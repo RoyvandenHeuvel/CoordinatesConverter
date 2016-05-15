@@ -2,7 +2,7 @@ package converters;
 
 public class RDConverter {
 
-    public double[] ConvertToLatLong(double x, double y) {
+    public static double[] ConvertToLatLong(double x, double y) {
 
         int referenceRdX = 155000;
         int referenceRdY = 463000;
