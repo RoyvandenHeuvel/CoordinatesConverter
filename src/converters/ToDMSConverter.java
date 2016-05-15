@@ -1,10 +1,14 @@
 package converters;
 
-public class DMSConverter {
+import static converters.ToDecimalConverter.RijksdriehoekToDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ToDMSConverter {
 // Input a double latitude or longitude in the decimal format
 // e.g. -79.982195
 
-    static String[] decimalToDMS(double coord) {
+    public static String[] decimalToDMS(double coord) {
         String output[], degrees, minutes, seconds;
 
         // gets the modulus the coordinate divided by one (MOD1).
@@ -62,6 +66,20 @@ public class DMSConverter {
         
         return output;
     }
-
+    
+    public static ArrayList RijksdriehoekToDMS(double[] inputRdxRdy){
+              
+        double[] decimalXY = RijksdriehoekToDecimal(inputRdxRdy[0], inputRdxRdy[1]);
+        
+        String[] DMSX = decimalToDMS(decimalXY[0]);
+        String[] DMSY = decimalToDMS(decimalXY[1]);
+        
+        ArrayList output = new ArrayList();
+        
+        output.add(DMSX);
+        output.add(DMSY);
+        
+        return output;
+    }
     
 }

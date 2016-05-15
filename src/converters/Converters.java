@@ -1,8 +1,9 @@
 package converters;
 
-import static converters.DMSConverter.decimalToDMS;
-import static converters.DecimalConverter.DMSToDecimal;
-import static converters.RDConverter.ConvertToLatLong;
+import static converters.ToDMSConverter.decimalToDMS;
+import static converters.ToDecimalConverter.DMSToDecimal;
+import static converters.ToDecimalConverter.RijksdriehoekToDecimal;
+import static converters.ToRDConverter.DecimalToRijksdriehoek;
 
 
 public class Converters {
@@ -20,12 +21,16 @@ public class Converters {
         double decimalLat = DMSToDecimal("N", Double.parseDouble(DMSLatitude[0]), Double.parseDouble(DMSLatitude[1]), Double.parseDouble(DMSLatitude[2]));
         double decimalLong = DMSToDecimal("N", Double.parseDouble(DMSLongitude[0]), Double.parseDouble(DMSLongitude[1]), Double.parseDouble(DMSLongitude[2]));
         
-        double[] latlon = ConvertToLatLong(rdx, rdy);
+        double[] latlon = RijksdriehoekToDecimal(rdx, rdy);
+        double[] rdxrdy = DecimalToRijksdriehoek(latlon[0], latlon[1]);
         
-        System.out.println("Latitudes:" + latitude + " DMSLatitude:"+ " D" + DMSLatitude[0] + " M " + DMSLatitude[1]+ " S " + DMSLatitude[2] + " Decimal Latitude:" + decimalLat);
-        System.out.println("Longitudes: " + longitude + " DMSLongitude:"+ " D" + DMSLongitude[0]+ " M " + DMSLongitude[1]+ " S " + DMSLongitude[2] + " Decimal Longitude:" + decimalLong);
+        System.out.println("Latitudes:" + latitude + "\n DMS Latitude:"+ " D" + DMSLatitude[0] + " M " + DMSLatitude[1]+ " S " + DMSLatitude[2] + "\n Decimal Latitude:" + decimalLat);
+        System.out.println("Longitudes: " + longitude + "\n DMS Longitude:"+ " D" + DMSLongitude[0]+ " M " + DMSLongitude[1]+ " S " + DMSLongitude[2] + "\n Decimal Longitude:" + decimalLong);
         System.out.println("Latitude from RD: " + latlon[0]);
         System.out.println("Longitude from RD: " + latlon[1]);
+        System.out.println("RD from latitude: " + rdxrdy[0]);
+        System.out.println("RD from longitude: " + rdxrdy[1]);
+        
     }
     
 }

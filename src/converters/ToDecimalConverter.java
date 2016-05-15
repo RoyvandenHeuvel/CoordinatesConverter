@@ -1,8 +1,9 @@
 package converters;
 
-public class RDConverter {
 
-    public static double[] ConvertToLatLong(double x, double y) {
+
+public class ToDecimalConverter {
+    public static double[] RijksdriehoekToDecimal(double x, double y) {
 
         int referenceRdX = 155000;
         int referenceRdY = 463000;
@@ -48,4 +49,17 @@ public class RDConverter {
 
         return result;
     }
+    
+    public static double DMSToDecimal(String hemisphereOUmeridien, double degres, double minutes, double secondes) {
+        double LatOrLon = 0;
+        double signe = 1.0;
+
+        if ((hemisphereOUmeridien.equals("W")) || (hemisphereOUmeridien.equals("S"))) {
+            signe = -1.0;
+        }
+        LatOrLon = signe * (Math.floor(degres) + Math.floor(minutes) / 60.0 + secondes / 3600.0);
+
+        return (LatOrLon);
+    }
+
 }
